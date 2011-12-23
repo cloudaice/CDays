@@ -8,6 +8,9 @@ def cdwalker(cdrom,cdfile):
         export+="\n %s;%s;%s" %(root,dirs,files)
     open(cdfile,"w").write(export)
 if "-e"==sys.argv[1]:
+    for c in sys.argv[2]:
+        if '/'==c:
+            os.makedirs(sys.argv[2].[0::
     cdwalker(CDROM,sys.argv[2])
     print"记录被保存在 %s" % sys.argv[2]
 else:
