@@ -9,11 +9,12 @@ class PYCDC(cmd.Cmd):
         self.CDDIR='cdc/'
         self.prompt='(pycdc)>'
         self.intro='''PYCDC0.5使用说明：
-        dir    目录名     指定保存目录和保存的文件名 默认是'cdc'
-        walk   文件名     使用"*.cdc"
-        find   关键字     搜索遍历目录中的.cdc文件输出含有关键字的行
-        ?      查询帮助
-        exit   退出系统
+        dir       目录名     指定保存目录和保存的文件名 默认是'cdc/'
+        walk      文件名     使用"*.cdc" 将扫描得到的目录放到该文件夹中
+        find      关键字     搜索遍历目录中的.cdc文件输出含有关键字的行
+        diskdir   目录名     指定要扫描的路径名和光盘名 默认是"/media/cdrom0"
+        ?         查询帮助
+        exit      退出系统
         '''
 
         
@@ -22,6 +23,13 @@ class PYCDC(cmd.Cmd):
     def do_exit(self,line):
         sys.exit()
     
+    def help_diskdir(self):
+        print "指定要扫描的光盘路径名以及光盘名"
+    def do_diskdir(self,diskdir):
+        if diskdir=='': diskdir=raw_input("输入路径名及光盘名")
+        print "您输入的光盘名及路径名是 %s" % diskdir
+        self.CDROM=diskdir
+
     def help_walk(self):
         print "扫描光盘内容 walk cd and export into *.cdc"
     def do_walk(self,filename):
